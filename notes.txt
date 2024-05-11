@@ -1,0 +1,13 @@
+The purpose of this project is to implement a PINN to solve the lid-driven cavity flow Navier-Stokes equations. 
+
+For the inverse reconstruction problem, the sampling of the reconstruction data is extremely important. 
+To this point, employing a Latin Square sampling strategy might have been helpful... To sample N points, we can first divide 
+the domain into N rows and N columns, and then carry out Latin Square sampling, and then find the respective closest
+points in the dataset.
+
+the logcosh loss often resulted in nan losses for whatever reason. the L-BFGS loss also sometimes behaved that way. 
+I still don't understand why that happened, but restarting the kernel each time seemed to solve the problem. The same
+with CUDA Memory Error...
+
+Ideally I should have used torch.autograd to evaluate the partial derivatives, but for whatever reason it just didn't work...
+So I used a finite difference approximation instead, which worked just fine in this case...
